@@ -1,4 +1,7 @@
 defmodule Identicon do
+  @moduledoc """
+    Generates a custom Identicon based on a string input
+  """
   def name(input) do
     input
     |> hash_input
