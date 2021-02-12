@@ -15,7 +15,7 @@ defmodule Identicon do
   end
 
   @doc """
-
+    
 
   ## Examples
 
