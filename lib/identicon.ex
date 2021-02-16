@@ -9,9 +9,15 @@ defmodule Identicon do
   ## Examples
 
   """
-  def name(input) do
+  def main(input) do
     input
     |> hash_input
+    |> pick_color
+  end
+
+  def pick_color(image) do
+    %Identicon.Image{hex: [r, g, b | _tail]} = image
+    [r, g, b]
   end
 
   @doc """
