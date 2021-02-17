@@ -4,6 +4,7 @@ defmodule Identicon do
   """
 
   @doc """
+    Pulls in other functions and uses them in conjuntion of one another
 
 
   ## Examples
@@ -15,6 +16,12 @@ defmodule Identicon do
     |> pick_color
   end
 
+  @doc """
+    Pulls in a list of hashed numbers and returns the first three values
+
+  ## Examples
+
+  """
   def pick_color(image) do
     %Identicon.Image{hex: [r, g, b | _tail]} = image
     [r, g, b]
