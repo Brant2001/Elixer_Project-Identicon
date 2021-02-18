@@ -22,9 +22,8 @@ defmodule Identicon do
   ## Examples
 
   """
-  def pick_color(image) do
-    %Identicon.Image{hex: [r, g, b | _tail]} = image
-    [r, g, b]
+  def pick_color(%Identicon.Image{hex: [r, g, b | _tail]} = image) do
+    %Identicon.Image{image | color: {r, g, b}}
   end
 
   @doc """
