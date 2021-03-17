@@ -21,10 +21,20 @@ defmodule Identicon do
     |> save_image(input)
   end
 
+  @doc """
+    Takes the image and saves it to the local device
+  ## Examples
+
+  """
   def save_image(image, input) do
     File.write("#{input}.png", image)
   end
 
+  @doc """
+    Takes the pixel map and builds a random image that coralates to a specific string
+  ## Examples
+
+  """
   def draw_image(%Identicon.Image{color: color, pixel_map: pixel_map}) do
     image = :edg.create(250, 250)
     fill = :edg.color(color)
@@ -36,6 +46,11 @@ defmodule Identicon do
     :edg.render(image)
   end
 
+  @doc """
+    Takes the filtered grid and creates a pixel map
+  ## Examples
+
+  """
   def build_pixel_map(%Identicon.Image{grid: grid} = image) do
     pixel_map =
       Enum.map(grid, fn {_code, index} ->
@@ -51,6 +66,11 @@ defmodule Identicon do
     %Identicon.Image{image | pixel_map: pixel_map}
   end
 
+  @doc """
+    Takes the grid and filters out the odd numbers
+  ## Examples
+
+  """
   def filter_odd_squares(%Identicon.Image{grid: grid} = image) do
     grid =
       Enum.filter(grid, fn {code, _index} ->
@@ -60,6 +80,11 @@ defmodule Identicon do
     %Identicon.Image{image | grid: grid}
   end
 
+  @doc """
+    Takes the list of mirrored numbers and creates a grid
+  ## Examples
+
+  """
   def build_grid(%Identicon.Image{hex: hex} = image) do
     grid =
       hex
@@ -71,6 +96,11 @@ defmodule Identicon do
     %Identicon.Image{image | grid: grid}
   end
 
+  @doc """
+    Takes a list of numbers and mirrors it taking 1, 2, 3 and turning it into 1, 2, 3, 2, 1
+  ## Examples
+
+  """
   def mirror_row(row) do
     [first, second | _tail] = row
     row ++ [second, first]
